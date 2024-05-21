@@ -1,4 +1,28 @@
-import { $$clearArray, $$has, $$isEmpty, $$isObject, isFunction } from "@/utils/commonUtils";
+function $$isEmpty(target: any) {
+    return target == null || target === "";
+}
+
+function $$clearArray(target: any[]) {
+    target.splice(0, target.length);
+}
+
+function $$has(this: any, k: string | number | symbol, target?: object) {
+    const _target = target || this;
+    try {
+        return k in _target || _target.hasOwnProperty(k);
+    } catch {
+        return false;
+    }
+}
+
+function $$isObject(target: any) {
+    return typeof target === "object" && target !== null;
+}
+
+
+function isFunction(v: any) {
+    return typeof v === "function";
+}
 
 export interface broadcastChannelStateOption {
     broadcastChannel: BroadcastChannel | BroadcastChannel2,
